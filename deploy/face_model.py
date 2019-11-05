@@ -22,7 +22,7 @@ import face_preprocess
 
 
 def do_flip(data):
-  for idx in xrange(data.shape[0]):
+  for idx in range(data.shape[0]):
     data[idx,:,:] = np.fliplr(data[idx,:,:])
 
 def get_model(ctx, image_size, model_str, layer):
@@ -84,8 +84,6 @@ class FaceModel:
     return aligned
 
   def get_feature(self, aligned):
-    #face_img is bgr image
-    #print(nimg.shape)
     input_blob = np.expand_dims(aligned, axis=0)
     data = mx.nd.array(input_blob)
     db = mx.io.DataBatch(data=(data,))
@@ -95,8 +93,6 @@ class FaceModel:
     return embedding
 
   def get_ga(self, aligned):
-    #face_img is bgr image
-    #print(nimg.shape)
     input_blob = np.expand_dims(aligned, axis=0)
     data = mx.nd.array(input_blob)
     db = mx.io.DataBatch(data=(data,))
